@@ -3,6 +3,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
+import Image from 'next/image'
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -11,23 +13,23 @@ import 'swiper/css/pagination';
 import style from './HeroSlider.module.css';
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Pagination, EffectFade, Navigation } from 'swiper/modules';
 
-export default function Slider({ props, activeSlider, onSlideChange }) {
+export default function Slider({ props, horizontalActiveSlider, onSlideChange, first }) {
 
     const [currentSlider, setCurrentSlider] = useState()
+
 
     const swiperRef = useRef(null);
 
     const itemSlide = useSwiperSlide()
 
     useEffect(() => {
-        console.log(activeSlider);
+        // console.log(horizontalActiveSlider);
         if (swiperRef.current) {
-            // Переход к активному слайду при изменении activeSlider
-            swiperRef.current.swiper.slideTo(activeSlider);
+              swiperRef.current.swiper.slideTo(horizontalActiveSlider);
         }
-    }, [activeSlider])
+    }, [horizontalActiveSlider])
 
   return (
     <>
@@ -35,19 +37,43 @@ export default function Slider({ props, activeSlider, onSlideChange }) {
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        effect={'fade'}
+        navigation={false}
+        modules={[EffectFade, Navigation, Pagination]}
         className={style.swiper}
         onSlideChange={(e) => {
             onSlideChange(e.activeIndex);
           }}
         ref={swiperRef}
-        initialSlide={activeSlider}  // Установка начального слайда
+        initialSlide={horizontalActiveSlider}  // Установка начального слайда
       >
-        <SwiperSlide className={style.swiper_slide}>5% CBD OIL {props}</SwiperSlide>
-        <SwiperSlide className={style.swiper_slide}>10% CBD OIL {props}</SwiperSlide>
-        <SwiperSlide className={style.swiper_slide}>20% CBD OIL {props}</SwiperSlide>
-        <SwiperSlide className={style.swiper_slide}>30% CBD OIL {props}</SwiperSlide>
+        {props.map((item, i)=>{
+            return (
+            <SwiperSlide className={style.swiper_slide} key={i} style={{backgroundColor: item.bg}}>
+              <div className={style.content}>
+              <Image
+                src={item.img}
+                width={138}
+                height={429}
+                alt="Picture of the author"
+              />
+              </div>
+              <div className={style.content}>
+                <div className={style.text_container}>
+                  {item.title}
+                </div>
+                
+              </div>
+              
+            </SwiperSlide>)
+        })}
       </Swiper>
+
+
+    
+
+      
+
     </>
   );
 }
