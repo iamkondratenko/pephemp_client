@@ -22,8 +22,7 @@ export default function HeroSlider() {
 
   const sliderData = [
       [{img:'/2.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}],
-      [{img:'/1.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}],
-      [{img:'/2.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]
+      [{img:'/1.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}]
   ]
 
 
@@ -100,26 +99,29 @@ export default function HeroSlider() {
           ref={verticalSliderRef}
         >
           <SwiperSlide className={style.swiper_slide} >
-            <Slider props={[{img:'/2.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} first={true} />
+            <Slider props={[{img:'/mint_5.png?1', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/mint_10.png?1', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/mint_20.png?1', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/mint_30.png?1', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} first={true} />
           </SwiperSlide>
   
           <SwiperSlide className={style.swiper_slide}>
-            <Slider props={[{img:'/1.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
+            <Slider props={[{img:'/reg_5.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/reg_10.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/reg_20.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/reg_30.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
           </SwiperSlide>
   
-          <SwiperSlide className={style.swiper_slide}>
-            <Slider props={[{img:'/2.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
-          </SwiperSlide>
+          {/* <SwiperSlide className={style.swiper_slide}>
+            <Slider props={[{img:'/mint_5.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/mint_10.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/mint_20.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/mint_30.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
+          </SwiperSlide> */}
         </Swiper>
 
-        <div className={style.vertical_arrow}>
-          <div className={style.swiper_button_next + ' ' + "swiper-button-next" + ' ' + "swiper-up"} onClick={verticalHandleNextClick}/>
-          <div className={style.swiper_button_prev + ' ' + "swiper-button-prev" + ' ' + "swiper-down"} onClick={verticalHandlePrevClick}/>        
-        </div>
-        
-        <div className={style.horizontal_arrow}>
-          <div className={style.swiper_button_next + ' ' + "swiper-button-next" + ' ' + "swiper-left"} onClick={horizontalHandleNextClick}/>
-          <div className={style.swiper_button_prev + ' ' + "swiper-button-prev" + ' ' + "swiper-right"} onClick={horizontalHandlePrevClick}/>        
+
+        <div className={style.arrows}>
+          <div className={style.vertical_arrow}>
+            <div className={style.swiper_button_next + ' ' + "swiper-button-next" + ' ' + "swiper-up"} onClick={verticalHandleNextClick}/>
+            <div className={style.swiper_button_prev + ' ' + "swiper-button-prev" + ' ' + "swiper-down"} onClick={verticalHandlePrevClick}/>        
+          </div>
+          
+          <div className={style.horizontal_arrow}>
+            <div className={style.swiper_button_next + ' ' + "swiper-button-next" + ' ' + "swiper-left"} onClick={horizontalHandleNextClick}/>
+            <div className={style.swiper_button_prev + ' ' + "swiper-button-prev" + ' ' + "swiper-right"} onClick={horizontalHandlePrevClick}/>        
+          </div>
         </div>
         
 

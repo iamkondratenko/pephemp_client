@@ -14,22 +14,19 @@ import style from './HeroSlider.module.css';
 
 // import required modules
 import { Pagination, EffectFade, Navigation } from 'swiper/modules';
+import CircularText from '../CircularText/CircularText';
+
+// ... (ваш импорт и другие части компонента)
 
 export default function Slider({ props, horizontalActiveSlider, onSlideChange, first }) {
+  const [currentSlider, setCurrentSlider] = useState();
+  const swiperRef = useRef(null);
 
-    const [currentSlider, setCurrentSlider] = useState()
-
-
-    const swiperRef = useRef(null);
-
-    const itemSlide = useSwiperSlide()
-
-    useEffect(() => {
-        // console.log(horizontalActiveSlider);
-        if (swiperRef.current) {
-              swiperRef.current.swiper.slideTo(horizontalActiveSlider);
-        }
-    }, [horizontalActiveSlider])
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.swiper.slideTo(horizontalActiveSlider);
+    }
+  }, [horizontalActiveSlider]);
 
   return (
     <>
@@ -42,38 +39,26 @@ export default function Slider({ props, horizontalActiveSlider, onSlideChange, f
         modules={[EffectFade, Navigation, Pagination]}
         className={style.swiper}
         onSlideChange={(e) => {
-            onSlideChange(e.activeIndex);
-          }}
+          onSlideChange(e.activeIndex);
+        }}
         ref={swiperRef}
-        initialSlide={horizontalActiveSlider}  // Установка начального слайда
+        initialSlide={horizontalActiveSlider}
       >
-        {props.map((item, i)=>{
-            return (
-            <SwiperSlide className={style.swiper_slide} key={i} style={{backgroundColor: item.bg}}>
-              <div className={style.content}>
-              <Image
-                src={item.img}
-                width={138}
-                height={429}
-                alt="Picture of the author"
-              />
+        {props.map((item, i) => (
+          <SwiperSlide className={`${style.swiper_slide} ${style.jumpingImage}`} key={i} style={{ backgroundColor: item.bg }}>
+            <div className={style.content}>
+              <div className={style.imageContainer}>
+                <Image src={item.img} width={138} height={429} alt="Picture of the author" />
+                <div className={style.imageShadow}></div>
               </div>
-              <div className={style.content}>
-                <div className={style.text_container}>
-                  {item.title}
-                </div>
-                
-              </div>
-              
-            </SwiperSlide>)
-        })}
+              <div className={style.blurOverlay}></div>
+            </div>
+            <div className={style.content}>
+              <h2 className={style.text_container}>{item.title}</h2>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-
-
-    
-
-      
-
     </>
   );
 }

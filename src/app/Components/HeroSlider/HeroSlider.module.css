@@ -14,12 +14,18 @@
     display: block;
     width: 100%;
     height: 100%;
-  
-    /* Center slide text vertically */
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+
+  @media (max-width: 1180px) {
+    .swiper_slide {
+      flex-direction: column-reverse; /* Изменение flex-direction для разрешений меньше 1180px */
+    }
+  }
+
   
   .swiper-slide img {
     display: block;
@@ -41,6 +47,16 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(270deg);
+    transition-duration: 500ms;
+    z-index: 10; /* Ensure the arrows appear above the swiper */
+  }
+
+  .vertical_arrow:hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(270deg) scale(1.1);
+    transition-duration: 500ms;
     z-index: 10; /* Ensure the arrows appear above the swiper */
   }
 
@@ -68,4 +84,60 @@
   .text_container {
     padding: 70px;
     text-align: left;
+    font-size: 3.5vw;
+    text-transform: uppercase;
+    font-weight: 900;
   }
+
+  @media (max-width: 1180px) {
+    .text_container {
+      padding: 0;
+      font-size: 9vw;
+    }
+  }
+
+  .arrows {
+    transition-duration: 500ms;
+  }
+
+
+
+  /* HeroSlider.module.css */
+
+/* Добавляем анимацию к .jumping-image классу */
+.jumping-image {
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Овальная тень */
+.imageContainer {
+  position: relative;
+  animation: jumpAnimation ease-in-out infinite 3s;
+}
+
+.imageShadow {
+  position: absolute;
+  bottom: -15px; /* Расположение тени относительно изображения */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20%;
+  background: rgba(0, 0, 0, 0.1); /* Цвет тени, можно настроить значение */
+  border-radius: 50%;
+  filter: blur(10px); /* Размытие тени, можно настроить значение */
+  
+}
+
+
+
+@keyframes jumpAnimation {
+  0% {
+    transform: translateY(0);
+    
+  }
+  50% {
+    transform: translateY(20px);
+   
+  }
+
+}
