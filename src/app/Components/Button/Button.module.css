@@ -1,0 +1,20 @@
+.Button {
+    height: 55px;
+    min-width: 300px;
+    padding: 0 16px;
+    margin: 0 16px 0 0;
+    border-radius: 30px;
+    border: none;
+    background-color: #231f20;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.Secondary {
+    background: #ffffff30;
+    color: #231f20;
+    font-weight: 400;
+    box-shadow: 0px 0px 8px #53535333;
+}

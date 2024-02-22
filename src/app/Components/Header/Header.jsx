@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import style from './Header.module.css'
 import { useState, useEffect } from 'react'
 
@@ -56,20 +57,30 @@ const Header = () => {
             <header className={style.header}>
                 <div className={style.header_wraper}>
                     <div className={style.header_nav}>
-                        <div className={'logo'}>logo</div>
+                        <div className={'logo'}>
+                            <Image
+                                src="/pephemp.svg"
+                                alt="Your Logo"
+                                width={100} // Укажите нужную ширину
+                                height={50} // Укажите нужную высоту
+                            />
+                        </div>
                         <div className={style.global_nav}>
                             {mainNav.map((item, i) => {
                                 return(<Link href={item.link} key={i} className={style.nav}>{item.label}</Link>)
                             })}
                         </div>
-                        <div className={'cart'}>cart</div>
+                        <div className={'cart'}>
+                            <div className={style.ButtonCartWrapper}>
+                                <Image
+                                    src="/bag.svg"
+                                    alt="Your Logo"
+                                    width={24} // Укажите нужную ширину
+                                    height={24} // Укажите нужную высоту
+                                />
+                            </div>
+                        </div>
                     </div>
-                    {/* <div className={style.product_nav}>
-                        {productNav.map((item) => {
-                            return(<Link href={item.link} className={style.nav}>{item.label}</Link>)
-                        })}
-                        
-                    </div> */}
                 </div>
             </header>
         )

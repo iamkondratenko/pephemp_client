@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
 import Image from 'next/image'
+import Button from '@/app/Components/Button/Button'
 
 
 // Import Swiper styles
@@ -46,15 +47,24 @@ export default function Slider({ props, horizontalActiveSlider, onSlideChange, f
       >
         {props.map((item, i) => (
           <SwiperSlide className={`${style.swiper_slide} ${style.jumpingImage}`} key={i} style={{ backgroundColor: item.bg }}>
-            <div className={style.content}>
-              <div className={style.imageContainer}>
-                <Image src={item.img} width={138} height={429} alt="Picture of the author" />
-                <div className={style.imageShadow}></div>
+            <div className={`${style.SliderContainer}`}>
+              <div className={`${style.content} ${style.bg_logo}`}>
+                <div className={style.imageContainer}>
+                  <Image src={item.img} width={138} height={429} alt="Picture of the author" />
+                  <div className={style.imageShadow}></div>
+                </div>
+                <div className={style.blurOverlay}></div>
               </div>
-              <div className={style.blurOverlay}></div>
-            </div>
-            <div className={style.content}>
-              <h2 className={style.text_container}>{item.title}</h2>
+              <div className={`${style.content} ${style.text_section}`}>
+                <div className={style.text_section_wraper}>
+                  <h2 className={style.text_container}>{item.title}</h2>
+                  <p className={style.p_container}>{item.description}</p>
+                  <div className={style.ButtonsWrap}>
+                    <Button text={'Додати у кошик'} type={'primary'} />
+                    <Button text={'Детальніше'} />
+                  </div>
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}

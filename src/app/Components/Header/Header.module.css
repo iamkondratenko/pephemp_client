@@ -1,8 +1,10 @@
 .header {
     width: 100%;
     position: fixed;
-    background: #111;
+    background: #ffffff3d;
+    color: #231f20;
     z-index: 9;
+    min-height: 52px;
 }
 
 .header_wraper {
@@ -27,8 +29,16 @@
 
 .nav {
     padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #231f20;
 }
 
 .global_nav {
     display: flex;
+}
+
+.ButtonCartWrapper {
+    padding: 12px 0 12px 12px;
 }

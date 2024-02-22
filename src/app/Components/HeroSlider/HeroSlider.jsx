@@ -18,12 +18,9 @@ import style from './HeroSlider.module.css';
 // // import required modules
 // import { Pagination } from 'swiper/modules';
 
-export default function HeroSlider() {
+export default function HeroSlider({products}) {
 
-  const sliderData = [
-      [{img:'/2.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/2.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}],
-      [{img:'/1.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/1.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}]
-  ]
+    const sliderData = products
 
 
     const [verticalActiveSlider, setVerticalActiveSlider] = useState(0);
@@ -74,13 +71,17 @@ export default function HeroSlider() {
       }
     }
     
-    console.log(verticalSliderRef);
+    // console.log(verticalSliderRef);
 
+    function setBodyBackgroundColor(color) {
+      document.body.style.backgroundColor = color;
+    }
 
     useEffect(() => {
       // console.log(horizontalActiveSlider);
       if (verticalSliderRef.current) {
           verticalSliderRef.current.swiper.slideTo(verticalActiveSlider);
+          setBodyBackgroundColor(sliderData[verticalActiveSlider][0].bg)
       }
   }, [verticalActiveSlider])
 
@@ -98,17 +99,17 @@ export default function HeroSlider() {
           className={style.swiper}
           ref={verticalSliderRef}
         >
-          <SwiperSlide className={style.swiper_slide} >
-            <Slider props={[{img:'/mint_5.png?1', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/mint_10.png?1', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/mint_20.png?1', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/mint_30.png?1', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} first={true} />
-          </SwiperSlide>
-  
-          <SwiperSlide className={style.swiper_slide}>
-            <Slider props={[{img:'/reg_5.png', bg:'#cbdccc', title:'Regular 5% CBD OIL'},{img:'/reg_10.png', bg:'#cbdccc', title:'Regular 10% CBD OIL'},{img:'/reg_20.png', bg:'#cbdccc', title:'Regular 20% CBD OIL'},{img:'/reg_30.png', bg:'#cbdccc', title:'Regular 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
-          </SwiperSlide>
-  
-          {/* <SwiperSlide className={style.swiper_slide}>
-            <Slider props={[{img:'/mint_5.png', bg:'#a7dad0', title:'Mint 5% CBD OIL'},{img:'/mint_10.png', bg:'#a7dad0', title:'Mint 10% CBD OIL'},{img:'/mint_20.png', bg:'#a7dad0', title:'Mint 20% CBD OIL'},{img:'/mint_30.png', bg:'#a7dad0', title:'Mint 30% CBD OIL'}]} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} />
-          </SwiperSlide> */}
+          
+          {sliderData.map((item, i)=>{
+            return(
+              <SwiperSlide className={style.swiper_slide} key={i} >
+                <Slider props={item} horizontalActiveSlider={horizontalActiveSlider} onSlideChange={handleSlideChange} first={true} />
+              </SwiperSlide>
+            )
+          })}
+          
+
+
         </Swiper>
 
 
@@ -123,6 +124,9 @@ export default function HeroSlider() {
             <div className={style.swiper_button_prev + ' ' + "swiper-button-prev" + ' ' + "swiper-right"} onClick={horizontalHandlePrevClick}/>        
           </div>
         </div>
+
+
+        
         
 
       </>
