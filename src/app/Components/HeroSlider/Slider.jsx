@@ -5,6 +5,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
 import Image from 'next/image'
 import Button from '@/app/Components/Button/Button'
+import { useCart } from '@/app/contexts/CartContext'; // Путь к вашему CartContext
+
 
 
 // Import Swiper styles
@@ -22,6 +24,24 @@ import CircularText from '../CircularText/CircularText';
 export default function Slider({ props, horizontalActiveSlider, onSlideChange, first }) {
   const [currentSlider, setCurrentSlider] = useState();
   const swiperRef = useRef(null);
+
+
+  const { state, dispatch } = useCart();
+
+  const handleAddToCart = (item) => {
+    dispatch({ type: 'ADD_ITEM', payload: item });
+    dispatch({ type: 'TOGGLE_CART' });
+    console.log(item);
+  };
+
+
+  
+
+  
+
+  const handleUpdateQuantity = (item, quantity) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id: item.id, quantity } });
+  };
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -60,8 +80,12 @@ export default function Slider({ props, horizontalActiveSlider, onSlideChange, f
                   <h2 className={style.text_container}>{item.title}</h2>
                   <p className={style.p_container}>{item.description}</p>
                   <div className={style.ButtonsWrap}>
-                    <Button text={'Додати у кошик'} type={'primary'} />
+                    <div onClick={() => handleAddToCart(item)}>
+                    <Button text={'Додати у кошик'} type={'primary'}  />
+                    </div>
+                    <div onClick={() => handleAddToCart(item)}>
                     <Button text={'Детальніше'} />
+                    </div>
                   </div>
                 </div>
               </div>

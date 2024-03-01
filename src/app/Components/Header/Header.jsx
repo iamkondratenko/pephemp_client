@@ -4,10 +4,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import style from './Header.module.css'
 import { useState, useEffect } from 'react'
+import { useCart } from '@/app/contexts/CartContext'; // Путь к вашему CartContext
+
 
 const Header = () => {
     const [mainNav, setMainNav] = useState([])
     const [productNav, setProductNav] = useState([])
+    const { state, dispatch } = useCart();
 
     
 
@@ -52,6 +55,9 @@ const Header = () => {
     }, [])
 
 
+    const toggleCartVisibility = () => {
+        dispatch({ type: 'TOGGLE_CART' });
+      };
 
     return(
             <header className={style.header}>
@@ -71,10 +77,10 @@ const Header = () => {
                             })}
                         </div>
                         <div className={'cart'}>
-                            <div className={style.ButtonCartWrapper}>
+                            <div className={style.ButtonCartWrapper} onClick={toggleCartVisibility}>
                                 <Image
                                     src="/bag.svg"
-                                    alt="Your Logo"
+                                    alt="bag"
                                     width={24} // Укажите нужную ширину
                                     height={24} // Укажите нужную высоту
                                 />

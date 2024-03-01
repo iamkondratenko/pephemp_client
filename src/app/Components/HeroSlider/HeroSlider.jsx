@@ -83,7 +83,7 @@ export default function HeroSlider({products}) {
           verticalSliderRef.current.swiper.slideTo(verticalActiveSlider);
           setBodyBackgroundColor(sliderData[verticalActiveSlider][0].bg)
       }
-  }, [verticalActiveSlider])
+  }, [sliderData, verticalActiveSlider])
 
   
     return (
@@ -98,7 +98,7 @@ export default function HeroSlider({products}) {
           modules={[EffectFade, Navigation, Pagination]}
           className={style.swiper}
           ref={verticalSliderRef}
-        >
+        > 
           
           {sliderData.map((item, i)=>{
             return(

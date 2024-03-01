@@ -1,11 +1,46 @@
+"use client"
+
 import Image from "next/image";
 import styles from "./page.module.css";
 import HeroSlider from '@/app/Components/HeroSlider/HeroSlider';
 import Header from "@/app/Components/Header/Header";
+import { CartProvider } from "./contexts/CartContext";
+import Cart from "./Components/Cart/Cart";
+import QualitiesPic from "./Components/Qualities/QualitiesPic";
+import Qualities from "./Components/Qualities/Qualities";
 
 
 
 export default function Home() {
+
+  const qualitiesArray = [
+    {
+    label: 'Наші рослини вирощуються в ЄС з легально ліцензованого насіння 🌿',
+    pic: "/mint_5.png"
+      
+  },
+    {
+      label: 'Регулює цикл сну і неспання і значно покращує ранок 😴',
+      pic: "/reg_10.png"
+      },
+
+    {
+      label: 'Без добавок. Ніяких хімікатів. Протестовано в незалежних лабораторіях 🙂',
+      pic: "/mint_20.png"
+      },
+
+    {
+      label: 'Наші рослини вирощуються в ЄС з легально ліцензованого насіння 💪',
+      pic: "/reg_30.png"
+      },
+
+    {
+      label: 'Наші рослини вирощуються в ЄС з легально ліцензованого насіння 🌿',
+      pic: "/mint_5.png"
+      },
+
+]
+
 
 
 
@@ -34,9 +69,13 @@ const allProducts = [
 
 
   return (
+
+    <CartProvider>
     <main className={styles.main}>
       <Header/>
       <HeroSlider products={resultArray} />
+      <QualitiesPic qualitiesArray={qualitiesArray}/>
+
 
       <div>
           {allProducts.map((item, i)=>{
@@ -46,7 +85,8 @@ const allProducts = [
           })}
         </div>
 
-
+          <Cart/>
     </main>
+    </CartProvider>
   );
 }

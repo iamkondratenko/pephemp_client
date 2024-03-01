@@ -1,0 +1,27 @@
+.Headline {
+    font-size: 60px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 72px 0;
+    line-height: 1.4;
+    opacity: 0.3;
+    filter: blur(3px);
+    transition-duration: 500ms;
+}
+
+.active {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.PictureWraper {
+    position: fixed;
+    width: auto;
+    height: fit-content;
+    top: 20%;
+    padding: 90px;
+    background: aliceblue;
+    border-radius: 160px;
+}
+

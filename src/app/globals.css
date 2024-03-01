@@ -106,3 +106,24 @@ a {
 .swiper-pagination-bullet-active {
   background-color: #231f20 !important;
 }
+
+.Container {
+  width: 1180px;
+}
+
+.f_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    flex-wrap: nowrap;
+}
+
+.f_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.f_half {
+  flex: 1;
+}

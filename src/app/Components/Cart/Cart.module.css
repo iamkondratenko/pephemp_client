@@ -1,0 +1,76 @@
+.Modal {
+    position: fixed;
+    width: 30%;
+    height: 100vw;
+    z-index: 100;
+    right: 0;
+    top: 0;
+    background: #F7F2EC;
+    color: #000;
+    /* transform: translateX(100%); */
+    filter: blur(5px);
+    transition-duration: 300ms;
+}
+
+.Products {
+
+}
+
+.Product {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 42px;
+}
+
+.ImageWrapper {
+    width: 32px;
+}
+
+.TextWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+.ProductTitle {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.QuantityWraper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.QuantityButton {
+    font-size: 20px;
+    line-height: 0;
+    border: none;
+    background: none;
+    color: #000000;
+    border-radius: 50%;
+}
+
+.Header {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    line-height: 0;
+    padding: 0 24px;
+}
+
+.ModalWraper {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 300;
+    background: #000000b5;
+}
